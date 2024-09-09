@@ -1,15 +1,14 @@
 import 'dart:io';
 
+import 'package:demoapp/pages/home/view/food_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../common/color.dart';
-import '../../../custom/simpleText.dart';
 import '../../../sqlite_data/sqlite_data_store.dart';
 
-class FoodListController extends GetxController
+class AddFoodController extends GetxController
     with SingleGetTickerProviderMixin {
   final userData = GetStorage();
   final formkey = new GlobalKey<FormState>();
@@ -78,25 +77,11 @@ class FoodListController extends GetxController
     }
 
     if (errorMessageFullName == null && errorMessagePrice == null) {
-      if (setImage == '') {
-        Get.snackbar(
-          backgroundColor: appLightMainColor,
-          'Hey, User!',
-          '',
-          messageText: CustomSimpleTextField(
-            letterpsacingValue: true,
-            textSizeValue: true,
-            hintText: 'Kindly select an image.',
-            textSize: 18,
-            hintColor: blackColor,
-            fontfamily: 'summary',
-          ),
-        );
-      }else{
-        submitFoodData(Get.context!);
-        Get.back();
-      }
+      submitFoodData(Get.context!);
+       Get.offAll(FoodListScreen());
 
+      setImage = null;
+      update();
     }
 
     update();
@@ -112,8 +97,11 @@ class FoodListController extends GetxController
         dbFoodData.insertFood(st).then((value) => {
               nameController.clear(),
               priceController.clear(),
+              setImage = null,
+
               print("Food Data Add to database $value"),
             });
+        update();
       } else {
         food!.name = nameController.text;
         food!.image = setImage.toString();

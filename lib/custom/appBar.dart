@@ -23,14 +23,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
 
-      title:  Center(
-        child: CustomSimpleTextField(
-          textSizeValue: true,
-          hintText: title,
-          hintColor: blackColor,
-          fontfamily: 'PoppinsRegular',
-          textSize: MediaQuery.of(Get.context!).size.height * 0.024,
-        ),
+      title:  CustomSimpleTextField(
+        textSizeValue: true,
+        hintText: title,
+        hintColor: blackColor,
+        fontfamily: 'PoppinsRegular',
+        textSize: MediaQuery.of(Get.context!).size.height * 0.024,
       ),
       leading: leading,
       actions: [

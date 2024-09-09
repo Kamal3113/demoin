@@ -18,13 +18,13 @@ class SplashScreen extends GetView<SplashController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Hero(
-                //   tag: 'heroTag',
-                //   child: Lottie.asset(
-                //     'assets/yogaLoty1.json',
-                //     // height: 120,
-                //   ),
-                // ),
+                Hero(
+                  tag: 'heroTag',
+                  child: Lottie.asset(
+                    'assets/lgo.json',
+                    // height: 120,
+                  ),
+                ),
                 AnimatedTextKit(
                   animatedTexts: [
                     TyperAnimatedText(

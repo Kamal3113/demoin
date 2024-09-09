@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
         useInheritedMediaQuery: true,
         builder: (context, widget) => GetMaterialApp(
           theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
+          // darkTheme: ThemeData.dark(),
           themeMode: ThemeMode.system,
           initialBinding: SplashBinding(),
           initialRoute: AppPages.INITIAL,

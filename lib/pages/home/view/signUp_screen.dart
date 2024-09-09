@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../common/color.dart';
-import '../../../common/image.dart';
-import '../../../common/string.dart';
 import '../../../custom/customTextBox.dart';
 import '../../../custom/material_button.dart';
 import '../../../custom/simpleText.dart';
@@ -23,10 +21,23 @@ class SignUpScreen extends GetView<SignUpController> {
 
 _bodyWidget(SignUpController controller) {
   return SafeArea(
-    child: Column(
+    child:
+    controller.isLogin == true?
+    Center(
+      child: CustomButton(
+          color: appMainColor,
+          text: controller.isLogin == true
+              ? 'Proceed to next'
+              : "Register",
+          onPressed: () {
+            controller.validateSet();
+          }),
+    ) :
+    Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+
         Padding(
           padding: EdgeInsets.only(
               left: 30.0,
@@ -42,7 +53,6 @@ _bodyWidget(SignUpController controller) {
                 textSize: MediaQuery.of(Get.context!).size.height * 0.034,
                 hintColor: appMainColor,
               ),
-
             ],
           ),
         ),
@@ -51,7 +61,7 @@ _bodyWidget(SignUpController controller) {
             child: Form(
                 key: controller.formkey,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+
                   children: [
                     CustomFormField(
                       controller: controller.fullNameController,
@@ -68,25 +78,22 @@ _bodyWidget(SignUpController controller) {
                         //appEyeColor,
                       ),
                     ),
-
-
                     Padding(
                       padding: EdgeInsets.only(
                         top: MediaQuery.of(Get.context!).size.height * 0.04,
-                        right:
-                            MediaQuery.of(Get.context!).size.height * 0.04,
                       ),
                       child: CustomButton(
-
                           color: appMainColor,
-                          text: 'Proceed to next',
+                          text: "Register",
                           onPressed: () {
                             controller.validateSet();
                           }),
                     ),
-
                     controller.isLoading == true
-                        ? CircularProgressIndicator(color: appMainColor)
+                        ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(child: CircularProgressIndicator(color: appMainColor)),
+                        )
                         : SizedBox()
                   ],
                 )),

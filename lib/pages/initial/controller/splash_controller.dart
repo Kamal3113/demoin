@@ -27,10 +27,8 @@ class SplashController extends GetxController {
   }
 
   route() {
-
-
     userData.read('userLogin')
-        ? Get.offNamed(AppRoutes.homeScreen)
+        ? Get.offNamed(AppRoutes.signUpScreen)
         : Get.offNamed(AppRoutes.signUpScreen);
   }
 
